@@ -1,0 +1,80 @@
+import React, { useState } from "react";
+
+const App = () => {
+  const [isTransitioning, setIsTransitioning] = useState(false);
+
+  // Trigger transition on click (can be any event like scroll or hover)
+  const handleClick = () => {
+    setIsTransitioning(!isTransitioning);
+  };
+
+  return (
+    
+      <style>
+        
+          body, html {
+            height: 100%;
+            margin: 0;
+            font-family: Arial, sans-serif;
+          }
+
+          .container {
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            transition: background-color 1s ease; /* smooth transition on color change */
+          }
+
+          .section {
+            height: 50vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 2rem;
+            color: #fff;
+            transition: background-color 1s ease, transform 1s ease;
+          }
+
+          /* Default Styles */
+          .white-section {
+            background-color: white;
+            color: black;
+          }
+
+          .black-section {
+            background-color: black;
+            color: white;
+          }
+
+          /* Add transition effect */
+          .transitioning.white-section {
+            background-color: black;
+            color: white;
+          }
+
+          .transitioning.black-section {
+            background-color: white;
+            color: black;
+          }
+        
+      </style>
+
+      <div className="container">
+        <section
+          className={`section white-section ${isTransitioning ? "transitioning" : ""}`}
+          onClick={handleClick}
+        >
+          White Section
+        </section>
+        <section
+          className={`section black-section ${isTransitioning ? "transitioning" : ""}`}
+          onClick={handleClick}
+        >
+          Black Section
+        </section>
+      </div>
+    
+  );
+};
+
+export default App;
